@@ -31,7 +31,6 @@ namespace CustomerSupportLogger.Controllers
                 return RedirectToAction("Index");
             }
         }
-
         public ActionResult Logger()
         {
             return View();
@@ -44,6 +43,7 @@ namespace CustomerSupportLogger.Controllers
             c.CustEmail = Request["CustEmail"];
             c.CustName = Request["CustName"];
             c.LogStatus = Request["LogStatus"];
+            c.UserId = Int32.Parse(Request["UserId"]);
             c.Description = Request["Description"];
             user.Insert(c);
             return RedirectToAction("Index");

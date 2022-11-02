@@ -11,7 +11,7 @@ namespace CustomerSupportLogger.Models
         public string CustEmail { get; set; }
         public string CustName { get; set; }
         public string LogStatus { get; set; }
-       
+        public int UserId { get; set; }
         public string Description { get; set; }
     }
 }
