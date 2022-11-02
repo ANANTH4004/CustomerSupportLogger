@@ -16,7 +16,8 @@ namespace Dal
         public bool ValidateUser(string email, string pass)
         {
             bool ans = false;
-            var found = userContext.UserInfoes.FirstOrDefault(x => x.Email == email);
+            var found1 = userContext.UserInfoes.ToList();
+            var found = found1.Find(x => x.Email == email);
             if (found != null)
             {
                 if (found.Password == pass)
@@ -25,6 +26,11 @@ namespace Dal
                 }
             }
             return ans;
+        }
+        public void Insert(CustLogInfo c)
+        {
+            userContext.CustLogInfoes.Add(c);
+            userContext.SaveChanges();
         }
     }
 }

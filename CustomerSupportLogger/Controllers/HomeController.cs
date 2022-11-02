@@ -24,7 +24,7 @@ namespace CustomerSupportLogger.Controllers
             bool valid = user.ValidateUser(Request["Username"], Request["password"]);
             if (valid)
             {
-                return RedirectToAction("Privacy");
+                return RedirectToAction("Logger");
             }
             else
             {
@@ -32,6 +32,22 @@ namespace CustomerSupportLogger.Controllers
             }
         }
 
+        public ActionResult Logger()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Logger(FormCollection collection)
+        {
+            CustLogInfo c = new CustLogInfo();
+            c.LogId = Int32.Parse(Request["LogId"]);
+            c.CustEmail = Request["CustEmail"];
+            c.CustName = Request["CustName"];
+            c.LogStatus = Request["LogStatus"];
+            c.Description = Request["Description"];
+            user.Insert(c);
+            return RedirectToAction("Index");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
