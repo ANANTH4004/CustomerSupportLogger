@@ -13,6 +13,7 @@ namespace DalTest
         UserOperations op = null;
         public Test()
         {
+           
             op = new UserOperations();
         }
         [TestCase("anand@gmail.com","anand",ExpectedResult =true)]
@@ -21,6 +22,14 @@ namespace DalTest
         public bool Validate(string Email, string Password)
         {
             return op.ValidateUser(Email, Password);
+        }
+        [TestCase(4004 , ExpectedResult =false)]
+        [TestCase(1002 , ExpectedResult =true)]
+        public bool InsertCkeck(int id)
+        {
+            CustLogInfo c = new CustLogInfo();
+            c.UserId = id;
+           return op.Insert(c);
         }
     }
 }
